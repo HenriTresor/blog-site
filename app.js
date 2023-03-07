@@ -17,10 +17,6 @@ mongoose.connect(DB_URI, {
     useUnifiedTopology:true
 }).then(() => {
     console.log('connected to database');
-}).then(() => {
-    app.listen(PORT, () => {
-        console.log(`server listening on PORT ${PORT}`);
-    })
 }).catch((err) => console.log('ERROR CONNECTING TO MONGODB:', err.message))
 
 
@@ -64,4 +60,9 @@ app.get('/henri-tresor/portfolio', (req, res) => {
 
 app.all('/*', (req, res) => {
     res.status(404).sendFile(__dirname + '/public/404.html')
+})
+
+
+app.listen(PORT, () => {
+    console.log(`server listening on PORT ${PORT}`);
 })
