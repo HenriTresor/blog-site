@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henri Tresor</title>
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <script src="/scripts/index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+
+        <a href="/"><img src="/images/favicon.png" alt=""></a>
+        <h2>Henri Tresor</h2>
+
+    </header>
+
+    <section>
+        <div class="header">
+            <div class="search">
+                <input type="search" name="query" id="query" placeholder="search...">
+                <button id="srch-btn" type="submit">Search</button>
+                <a href="/new-blog"><button type="button" id="add-post">Add Post</button></a>
+            </div>
+        </div>
+        <div class="tags">
+            <h3>Tags</h3>
+        </div>
+
+        <div class="posts">
+
+
+        </div>
+    </section>
+
+
+    <script>
+    
+        window.onload = async () => {
+            const res = await fetch('/blogs', {
+                method: 'GET'
+            })
+            let postsDiv = document.querySelector('.posts')
+            const data = await res.json()
+            data.forEach(element => {
+                let postdiv = document.createElement('div')
+                postdiv.classList.add('post')
+                let title = document.createElement('h1')
+                title.innerText = element.post_header
+
+                let username = document.createElement('h3')
+                username.innerText = element.username
+
+                let date = document.createElement('p')
+                date.innerText = element.date
+
+                let tag = document.createElement('p')
+                tag.classList.add('tag')
+                tag.innerText = element.post_tag
+
+                let content = document.createElement('p')
+                content.innerHTML = element.post_content
+
+                let readmore = document.createElement('a')
+                readmore.setAttribute('href', `/blog/${element._id}`)
+                readmore.innerHTML = 'readmore'
+
+                postsDiv.append(postdiv)
+                postdiv.append(title)
+                postdiv.append(username)
+                postdiv.append(date)
+                postdiv.append(tag)
+                postdiv.append(content)
+                postdiv.append(readmore)
+
+            });
+
+
+
+        }
+
+        
+    
+
+            window.addEventListener('scroll', () => {
+                let header = document.querySelector('header')
+                let sticky = header.offsetTop
+                console.log(sticky);
+                if (window.pageYOffset > sticky) {
+                    header.classList.add('sticky')
+                }
+                else {
+                    header.classList.remove('sticky')
+                }
+            })
+    </script>
+</body>
+
+</html>

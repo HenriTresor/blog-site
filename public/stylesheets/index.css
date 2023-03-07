@@ -1,0 +1,425 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Outfit, verdana;
+  scroll-behavior: smooth;
+}
+
+body,
+html {
+  padding: 10px;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-evenly;
+}
+
+header img {
+  width: 100px;
+  border-radius: 50%;
+}
+
+header h2 {
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 10px black;
+}
+
+header ul {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+ul a,
+ul a:visited {
+  text-decoration: none;
+  color: rgb(77, 74, 74);
+  font-size: 1.3rem;
+}
+
+ul a:hover {
+  border-bottom: 1px solid black;
+}
+
+header ul li {
+  list-style: none;
+}
+
+#subscribe,
+#send-message {
+  width: 100%;
+  margin: 20px 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgb(3, 3, 50);
+  color: white;
+  font-size: 1.2rem;
+  gap: 20px;
+}
+
+#subscribe form,
+#send-message form {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+#subscribe input,
+#send-message input {
+  padding: 10px;
+  width: 100%;
+  background: whitesmoke;
+  border-radius: 10px;
+  height: 6vh;
+  border: none;
+}
+
+#subscribe #sub-btn,
+#send-message #btn {
+  padding: 10px;
+  background: rgb(247, 99, 99);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+#send-message {
+  background: rgb(152, 152, 152);
+}
+
+#send-message form{
+    flex-direction: column;
+}
+
+#send-message textarea{
+    width: 100%;
+    resize: vertical;
+}
+
+#news {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  height: auto;
+}
+
+/* style registration pages */
+
+.form-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container form {
+  box-shadow: 0px 0px 20px black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  border-radius: 20px;
+}
+
+.form-container form .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.input-group button {
+  padding: 10px;
+  background: none;
+  border: 2px solid black;
+  box-shadow: 4px 0px 5px black;
+  cursor: pointer;
+  transition: 0.5s ease-in;
+}
+
+.input-group button:hover {
+  box-shadow: none;
+}
+.input-group button:active {
+  transform: scale(0.97);
+}
+
+/* style blog page */
+
+section > * {
+  width: 100%;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section .header input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.header #srch-btn,
+#add-post {
+  padding: 10px;
+  margin: 10px 0;
+  background: rgb(3, 3, 73);
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+#add-post {
+  background: rgb(255, 117, 117);
+}
+
+.posts {
+  padding: 20px;
+  width: 100%;
+}
+
+.posts .post {
+  width: 70%;
+  margin: 20px 0;
+  border: 2px solid rgba(0, 0, 0, 0.406);
+  padding: 10px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  word-wrap: break-word;
+}
+
+.tag {
+  padding: 2px;
+  text-align: center;
+  border: 2px solid grey;
+  background: rgba(0, 0, 0, 0.158);
+  color: rgb(96, 96, 96);
+  width: 100px;
+  border-radius: 20px;
+}
+
+/* edit new blog post page */
+
+.post_container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post_container .input-group {
+  margin: 20px 0;
+}
+
+.post_container textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 10px;
+}
+
+.err {
+  background: rgba(255, 0, 0, 0.572);
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.success {
+  background: rgba(13, 237, 103, 0.572);
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+/* editing single blog page */
+
+.full-post {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  gap: 20px;
+  background: rgb(220, 220, 220);
+  padding: 20px;
+  height: auto;
+}
+
+.share-btns {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.share-btns i {
+  font-size: 2rem;
+  cursor: pointer;
+  color: grey;
+}
+
+.hamburger{
+    display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+  nav{
+    display: none;
+  }
+
+  nav.active{
+    display: block;
+    position: fixed;
+    top: 100%;
+    /* padding: 20px; */
+    width: 90%;
+    background: rgb(0, 0, 139);
+    border-radius: 20px;
+    box-shadow: 0px 0px 40px black;
+
+  }
+
+  nav.active ul{
+    flex-direction: column;
+  }
+  nav.active a:hover{
+    border: none;
+  }
+
+  nav.active li{
+    padding: 30px;
+        border-radius: 20px;
+  }
+
+  nav.active li:hover{
+    background: white;
+    color: darkblue;
+  }
+  nav.active *{
+    color: white;
+    text-align: center;
+  }
+
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .hamburger .bar{
+    width: 30px;
+    height: 5px;
+    background: black;
+    border-radius: 20px;
+  }
+
+  .hamburger.active :nth-child(2){
+    opacity: 0;
+  }
+
+  .hamburger.active :nth-child(1){
+    transform: translateY(18px) rotate(45deg);
+  }
+  .hamburger.active :nth-child(3){
+    transform: translate(1px) rotate(-45deg);
+  }
+
+}
+
+@media screen and (max-width:400px){
+    header{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #subscribe form{
+        flex-direction: column;
+    }
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+
+.sticky{
+    position: fixed;
+    width: 100%;
+    box-shadow: 0px 0px 10px black;
+    left: 0;
+   animation: header 300ms forwards linear;
+    background: whitesmoke;
+     top: 0;
+     border-radius: 20px;
+     padding: 10px;
+}
+
+@keyframes header {
+    from{
+       transform: scale(1);
+    }
+    to{
+    transform: scale(0.9);
+    }
+}
+
+.scroll-top{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    box-shadow: 0px 0px 20px black;
+    position: fixed;
+    top: 80%;
+    cursor: pointer;
+}

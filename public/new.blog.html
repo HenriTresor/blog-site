@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add new BLog post</title>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+
+<body>
+    <div class="post_container">
+        <form action="" method="post">
+            <h1>Add new Blog post</h1>
+            <span></span>
+            <div class="input-group">
+                <input type="text" name="post_header" id="" placeholder="Enter the post header *">
+            </div>
+            <div class="input-group">
+                <input type="text" name="username" id="" placeholder="Input you name *">
+            </div>
+            <div class="input-group">
+                <input type="text" name="post_tag" id="" placeholder="What is your post about ? ">
+            </div>
+            <div class="input-group">
+                <textarea name="post_content" placeholder="Enter the post body... *" id="" cols="30"
+                    rows="10"></textarea>
+            </div>
+            <div class="input-group">
+                <button id="post">Post</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let form = document.querySelector('form')
+        form.addEventListener('submit', async e => {
+                let span = document.querySelector('span')
+                span.innerHTML = ""
+                span.classList.remove('err')
+            e.preventDefault()
+
+            let post_header = form.post_header.value
+            let post_tag = form.post_tag.value
+            let username = form.username.value
+            let post_content = form.post_content.value
+    
+
+            const res = await fetch('/blog', {
+                method:'POST',
+                headers:{
+                    'Content-type':"application/json"
+                },
+                body:JSON.stringify({ post_header, username, post_tag,post_content })
+            })
+
+            const data = await res.json()
+            console.log(data);
+            if(data.message == "new blog post created successfully"){
+                let span = document.querySelector('span')
+                span.innerText = "Post created Successfully!"
+                span.classList.add('success')
+               setTimeout(()=>{
+                 location.assign('/blog')
+               },2000)
+            }else{
+                let span = document.querySelector('span')
+                span.innerHTML = data.message
+                span.classList.add('err')
+            }
+        })
+
+    </script>
+</body>
+
+</html>

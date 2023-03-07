@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henri Tresor</title>
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/scripts/index.js" defer></script>
+<script type="text/javascript"
+    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="scroll"><i class="fa fa-arrow-up"></i></div>
+    <header>
+
+        <a href="/"><img src="/images/favicon.png" alt=""></a>
+        <h2>Henri Tresor</h2>
+        <nav>
+            <ul>
+                <a href="/blog">
+                    <li>Blog</li>
+                </a>
+                <!-- <a href="/auth/signup">
+                    <li>Signup</li>
+                </a>
+                <a href="/auth/login">
+                    <li>Log in</li>
+                </a> -->
+                <a href="/henri-tresor/portfolio">
+                    <li>About Dev</li>
+                </a>
+            </ul>
+        </nav>
+
+        <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+    </header>
+
+    <section>
+
+        <div id="subscribe">
+            <h1>Stay Up To Date!</h1>
+            <p>Subscribe to our newsletter to receive tip emails about web development and programming</p>
+            <form action="" method="post">
+                <input type="text" name="name" id="name" placeholder="Input your name">
+                <input type="email" placeholder="Enter your email" name="email" id="email">
+                <button id="sub-btn">Subscribe</button>
+            </form>
+        </div>
+
+        <div id="news">
+        <div id="google_translate_element"></div>
+<button onclick="translatePage()">Translate</button>
+
+
+            <h1>Updates</h1>
+            <div class="update"></div>
+        </div>
+
+        <div id="send-message">
+            <h1>Send me a message</h1>
+            <p>what would you like to tell me?</p>
+            <form action="" method="post">
+                <input type="text" name="name" id="name" placeholder="Input your name">
+                <input type="email" placeholder="Enter your email" name="email" id="email">
+                <textarea name="message" id="" placeholder="Enter the message content" cols="30" rows="10"></textarea>
+                <button id="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; Henri Tresor copyright 2023.</p>
+    </footer>
+
+
+    <script>
+
+
+let hamburger = document.querySelector('.hamburger')
+hamburger.addEventListener('click', ()=>{
+    window.scrollTo(0, 100)
+    let nav = document.querySelector('nav')
+    nav.classList.toggle('active')
+    hamburger.classList.toggle('active')
+})
+
+        window.addEventListener('scroll', () => {
+            let header = document.querySelector('header')
+            let sticky = header.offsetTop
+            console.log(sticky);
+            if (window.pageYOffset > sticky) {
+                header.classList.add('sticky')
+            }
+            else {
+                header.classList.remove('sticky')
+            }
+
+            let scroll_btn = document.querySelector('.scroll')
+            scroll_btn.classList.add('scroll-top')
+            scroll_btn.addEventListener('click', ()=>{
+                window.scrollTo(0,0)
+            })
+        })
+
+
+        window.onload = ()=>{
+            fetchNews(' https://newsapi.org/v2/top-headlines?category=technology&apiKey=6397eb57b0c54c4782a7815883b2c9a0')
+                function googleTranslateElementInit() {
+                new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+            }
+
+            function translatePage() {
+                var translateButton = document.querySelector('.goog-te-combo');
+                translateButton.value = 'fr'; // Replace 'fr' with the language code you want to translate to
+                translateButton.dispatchEvent(new Event('change'));
+            }
+
+        }
+        let news = document.querySelector('#news')
+        const fetchNews = async (API_LINK) => {
+            const res = await fetch(API_LINK, {
+                method:'GET',
+                mode:'cors'
+            })
+
+            const data = await res.json()
+            data.articles.forEach(element => {
+                let newsDiv = document.createElement('div')
+
+                let author = document.createElement('h3')
+                author.innerText = element.author
+
+                let date = document.createElement('span')
+                date.innerText = new Date(element.publishedAt).toUTCString()
+
+                let source = document.createElement('h5')
+                source.innerText = element.source.name
+
+                let title = document.createElement('h1')
+                title.innerText = element.title
+
+                let url = document.createElement('a')
+                url.innerText = 'Read more'
+                url.setAttribute('href', `${element.url}`)
+                url.target = '_blank'
+
+                newsDiv.append(title)
+                newsDiv.append(author)
+                newsDiv.append(date)
+                newsDiv.append(source)
+                newsDiv.append(url)
+                news.append(newsDiv)
+
+                news.classList.add('posts')
+                newsDiv.classList.add('post')
+            });
+        }
+    </script>
+</body>
+
+</html>

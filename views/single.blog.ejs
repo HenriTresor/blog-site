@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/stylesheets/index.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Henri Tresor Blog</h1>
+
+    <div class="full-post">
+        <div class="share-btns">
+            <h3>Share : </h3>
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-reddit"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-linkedin"></i>
+            <i class="fa fa-whatsapp"></i>
+        </div>
+        <p>Blog id : <%= blog._id%></p>
+        <h1><%= blog.post_header%></h1>
+        <p><%= blog.date%></p>
+        <p class="tag"><%= blog.post_tag%></p>
+        <p><%= blog.post_content%></p>
+    </div>
+
+
+    <script>
+        let is = document.querySelectorAll('i')
+        is.forEach(i => {
+            i.addEventListener('click', ()=>{
+                alert(`copy the link : ${location.protocol}//${location.hostname}:${location.port}/blog/<%= blog._id%>`)
+            })
+        })
+    </script>
+</body>
+
+</html>
